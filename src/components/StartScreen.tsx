@@ -58,7 +58,7 @@ export function StartScreen({ onStart }: StartScreenProps) {
           transition={{ type: 'spring', stiffness: 200, damping: 10 }}
           className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 font-sans tracking-tight mb-3 drop-shadow-[0_0_10px_rgba(56,189,248,0.3)]"
         >
-          {step === 1 ? 'Será Que Você Me Conhece?' : 'Quase lá...'}
+          {step === 1 ? 'Você me conhece?' : 'Quase lá...'}
         </motion.h1>
         <p className="text-slate-300 text-sm md:text-base">
           {step === 1 ? 'Teste agora se você realmente me conhece!' : 'Responda rapidinho antes de começarmos.'}
