@@ -1,0 +1,8 @@
+{
+  "name": "Será Que Você Me Conhece?",
+  "description": "Um quiz interativo para testar o quanto seus amigos realmente conhecem você.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
