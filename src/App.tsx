@@ -19,10 +19,17 @@ export default function App() {
     setGameState('playing');
   };
 
-  const handleComplete = (finalScore: number, finalWrongAnswers: WrongAnswer[]) => {
+  const handleComplete = async (finalScore: number, finalWrongAnswers: WrongAnswer[]) => {
     setScore(finalScore);
     setWrongAnswers(finalWrongAnswers);
     setGameState('result');
+    
+    // Save to Firebase
+    if (userInfo) {
+      import('./lib/firebaseUtils').then(({ saveQuizResult }) => {
+        saveQuizResult(userInfo, finalScore, questions.length).catch(console.error);
+      });
+    }
   };
 
   const handleRestart = () => {

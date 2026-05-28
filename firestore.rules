@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isAdmin() {
+      return request.auth != null && request.auth.token.email_verified == true && request.auth.token.email == 'storearca7@gmail.com';
+    }
+
+    function isValidQuizResult(data) {
+      return data.keys().hasAll(['name', 'phone', 'score', 'total', 'createdAt', 'knowsPersonally', 'affinity', 'wantsAdminToKnow'])
+        && data.keys().size() == 8
+        && data.name is string && data.name.size() > 0 && data.name.size() <= 100
+        && data.phone is string && data.phone.size() > 0 && data.phone.size() <= 20
+        && data.score is number && data.score >= 0 && data.score <= data.total
+        && data.total is number && data.total == 19
+        && data.createdAt == request.time
+        && data.knowsPersonally is bool
+        && data.affinity in ['baixo', 'médio', 'alto', 'intenso']
+        && data.wantsAdminToKnow is bool;
+    }
+
+    match /quizResults/{resultId} {
+      // Anyone can create a result (unauthenticated submissions are required for the open quiz)
+      allow create: if isValidQuizResult(request.resource.data);
+      // Only the admin can read the results
+      allow read, delete, update: if isAdmin();
+    }
+  }
+}

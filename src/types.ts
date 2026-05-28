@@ -14,6 +14,9 @@ export interface WrongAnswer {
 export interface UserInfo {
   name: string;
   phone: string;
+  knowsPersonally: boolean | null;
+  affinity: 'baixo' | 'médio' | 'alto' | 'intenso' | null;
+  wantsAdminToKnow: boolean | null;
 }
 
 export type GameState = 'start' | 'playing' | 'result';
