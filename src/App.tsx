@@ -1,88 +1,102 @@
-import { useState } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
-import { GameState, UserInfo, WrongAnswer } from './types';
-import { questions } from './data/questions';
-import { StartScreen } from './components/StartScreen';
-import { QuizScreen } from './components/QuizScreen';
-import { ResultScreen } from './components/ResultScreen';
+import React, { useState } from 'react';
+import { Header } from './components/Header';
+import { Hero } from './components/Hero';
+import { SegmentsSection } from './components/SegmentsSection';
+import { PainPointsSection } from './components/PainPointsSection';
+import { FeaturesSection } from './components/FeaturesSection';
+import { MultiDeviceSection } from './components/MultiDeviceSection';
+import { BenefitsSection } from './components/BenefitsSection';
+import { HowItWorksSection } from './components/HowItWorksSection';
+import { PricingSection } from './components/PricingSection';
+import { CustomSystemSection } from './components/CustomSystemSection';
+import { FaqSection } from './components/FaqSection';
+import { InstagramSection } from './components/InstagramSection';
+import { ContactSection } from './components/ContactSection';
+import { Footer } from './components/Footer';
+import { FloatingWhatsApp } from './components/FloatingWhatsApp';
+import { CheckoutModal } from './components/CheckoutModal';
+import { CustomerLoginModal } from './components/CustomerLoginModal';
+import { LegalModal, LegalDocType } from './components/LegalModal';
 
-export default function App() {
-  const [gameState, setGameState] = useState<GameState>('start');
-  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
-  const [score, setScore] = useState(0);
-  const [wrongAnswers, setWrongAnswers] = useState<WrongAnswer[]>([]);
-
-  const handleStart = (info: UserInfo) => {
-    setUserInfo(info);
-    setScore(0);
-    setWrongAnswers([]);
-    setGameState('playing');
-  };
-
-  const handleComplete = async (finalScore: number, finalWrongAnswers: WrongAnswer[]) => {
-    setScore(finalScore);
-    setWrongAnswers(finalWrongAnswers);
-    setGameState('result');
-    
-    // Save to Firebase
-    if (userInfo) {
-      import('./lib/firebaseUtils').then(({ saveQuizResult }) => {
-        saveQuizResult(userInfo, finalScore, questions.length).catch(console.error);
-      });
-    }
-  };
-
-  const handleRestart = () => {
-    setGameState('start');
-    setUserInfo(null);
-    setScore(0);
-    setWrongAnswers([]);
-  };
+export const App: React.FC = () => {
+  const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [legalDocType, setLegalDocType] = useState<LegalDocType | null>(null);
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col font-sans selection:bg-cyan-500/30 overflow-x-hidden relative">
-      {/* Background Decorative Accents */}
-      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-blue-900/20 blur-[120px]" />
-        <div className="absolute top-[40%] -right-[20%] w-[60%] h-[60%] rounded-full bg-cyan-900/10 blur-[120px]" />
-      </div>
+    <div className="min-h-screen bg-[#F5F8FC] text-slate-800 flex flex-col font-sans selection:bg-[#FF8617] selection:text-white">
+      {/* Fixed Navigation Header */}
+      <Header
+        onOpenCheckout={() => setCheckoutModalOpen(true)}
+        onOpenLogin={() => setLoginModalOpen(true)}
+      />
 
-      <main className="flex-1 flex items-center justify-center relative z-10 w-full p-4 md:p-6 lg:p-8">
-        <AnimatePresence mode="wait">
-          {gameState === 'start' && (
-            <motion.div key="start" className="w-full max-w-4xl" exit={{ opacity: 0, y: -20 }}>
-              <StartScreen onStart={handleStart} />
-            </motion.div>
-          )}
+      {/* Main Landing Page Content */}
+      <main className="flex-1">
+        {/* 1. Hero Section */}
+        <Hero />
 
-          {gameState === 'playing' && (
-            <motion.div key="playing" className="w-full max-w-3xl" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }}>
-              <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-800 rounded-3xl shadow-2xl overflow-hidden">
-                <QuizScreen questions={questions} onComplete={handleComplete} />
-              </div>
-            </motion.div>
-          )}
+        {/* 2. Target Segments ("Para quem é o Varejou?") */}
+        <SegmentsSection onOpenCheckout={() => setCheckoutModalOpen(true)} />
 
-          {gameState === 'result' && userInfo && (
-            <motion.div key="result" className="w-full max-w-3xl" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-               <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-800 rounded-3xl shadow-2xl overflow-hidden">
-                 <ResultScreen 
-                   score={score} 
-                   total={questions.length} 
-                   userInfo={userInfo} 
-                   wrongAnswers={wrongAnswers}
-                   onRestart={handleRestart} 
-                 />
-               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* 3. Pain Points & Solution Transition */}
+        <PainPointsSection onOpenCheckout={() => setCheckoutModalOpen(true)} />
+
+        {/* 4. Complete Feature Modules Breakdown */}
+        <FeaturesSection onOpenCheckout={() => setCheckoutModalOpen(true)} />
+
+        {/* 5. Multi-device Management */}
+        <MultiDeviceSection onOpenCheckout={() => setCheckoutModalOpen(true)} />
+
+        {/* 6. Strategic Core Benefits */}
+        <BenefitsSection onOpenCheckout={() => setCheckoutModalOpen(true)} />
+
+        {/* 7. How it Works (4-Step Timeline) */}
+        <HowItWorksSection onOpenCheckout={() => setCheckoutModalOpen(true)} />
+
+        {/* 8. Commercial Plan (R$ 29,90/mês) */}
+        <PricingSection
+          onOpenCheckout={() => setCheckoutModalOpen(true)}
+          onOpenCancellationPolicy={() => setLegalDocType('cancellation')}
+        />
+
+        {/* 9. Bespoke Custom Software (Agência RAON) */}
+        <CustomSystemSection />
+
+        {/* 10. Frequently Asked Questions (Accordion) */}
+        <FaqSection />
+
+        {/* 11. Official Instagram Showcase */}
+        <InstagramSection />
+
+        {/* 12. Commercial Contact Form & Channels */}
+        <ContactSection />
       </main>
 
-      <footer className="relative z-10 text-center p-6 text-slate-600 text-sm">
-        Desenvolvido para você testar seus conhecimentos.
-      </footer>
+      {/* Footer */}
+      <Footer onOpenLegal={(type) => setLegalDocType(type)} />
+
+      {/* Floating Interactive Elements */}
+      <FloatingWhatsApp />
+
+      {/* Modals & Dialogs */}
+      <CheckoutModal
+        isOpen={checkoutModalOpen}
+        onClose={() => setCheckoutModalOpen(false)}
+      />
+
+      <CustomerLoginModal
+        isOpen={loginModalOpen}
+        onClose={() => setLoginModalOpen(false)}
+        onOpenCheckout={() => setCheckoutModalOpen(true)}
+      />
+
+      <LegalModal
+        type={legalDocType}
+        onClose={() => setLegalDocType(null)}
+      />
     </div>
   );
-}
+};
 
+export default App;

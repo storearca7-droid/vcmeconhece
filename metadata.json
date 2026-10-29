@@ -1,6 +1,6 @@
 {
-  "name": "Você me conhece?",
-  "description": "Um quiz interativo para testar o quanto seus amigos realmente conhecem você.",
+  "name": "Varejou - Sistema de Gestão para Lojas e Varejo",
+  "description": "Controle vendas, estoque, clientes, caixa e financeiro em um só lugar. Conheça o Varejou, o sistema de gestão para lojas, com planos a partir de R$ 29,90 por mês.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

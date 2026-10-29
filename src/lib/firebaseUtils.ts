@@ -1,6 +1,6 @@
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db, auth } from './firebase';
-import { UserInfo } from '../types';
+import { ContactLead } from '../types';
 
 export enum OperationType {
   CREATE = 'create',
@@ -31,26 +31,26 @@ export function handleFirestoreError(error: unknown, operationType: OperationTyp
       emailVerified: auth.currentUser?.emailVerified,
     },
     operationType,
-    path
+    path,
   };
   console.error('Firestore Error: ', JSON.stringify(errInfo));
   throw new Error(JSON.stringify(errInfo));
 }
 
-
-export async function saveQuizResult(userInfo: UserInfo, score: number, total: number) {
-  const pathForWrite = 'quizResults';
+export async function saveCommercialLead(lead: Omit<ContactLead, 'id' | 'createdAt'>) {
+  const pathForWrite = 'commercialLeads';
   try {
-    await addDoc(collection(db, pathForWrite), {
-      name: userInfo.name,
-      phone: userInfo.phone,
-      knowsPersonally: userInfo.knowsPersonally,
-      affinity: userInfo.affinity,
-      wantsAdminToKnow: userInfo.wantsAdminToKnow,
-      score,
-      total,
-      createdAt: serverTimestamp()
+    const docRef = await addDoc(collection(db, pathForWrite), {
+      name: lead.name,
+      company: lead.company || '',
+      whatsapp: lead.whatsapp,
+      email: lead.email,
+      segment: lead.segment,
+      interestType: lead.interestType,
+      message: lead.message || '',
+      createdAt: serverTimestamp(),
     });
+    return docRef.id;
   } catch (error) {
     handleFirestoreError(error, OperationType.WRITE, pathForWrite);
   }
