@@ -43,7 +43,7 @@ export const SegmentsSection: React.FC<SegmentsSectionProps> = ({ onOpenCheckout
         </div>
 
         {/* Segments Interactive Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 mb-10">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-10">
           {VAREJOU_CONFIG.targetSegments.map((segment) => {
             const isSelected = segment.id === activeSegmentId;
             return (
@@ -51,22 +51,43 @@ export const SegmentsSection: React.FC<SegmentsSectionProps> = ({ onOpenCheckout
                 key={segment.id}
                 onClick={() => setActiveSegmentId(segment.id)}
                 type="button"
-                className={`flex flex-col items-center justify-center p-3 rounded-xl border text-center transition-all cursor-pointer ${
+                className={`group flex flex-col items-center overflow-hidden rounded-xl border text-center transition-all cursor-pointer ${
                   isSelected
-                    ? 'border-[#FF8617] bg-orange-50/70 text-[#06234C] shadow-sm ring-1 ring-[#FF8617]'
-                    : 'border-slate-200 hover:border-slate-300 bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                    ? 'border-[#FF8617] bg-white text-[#06234C] shadow-md ring-2 ring-[#FF8617] -translate-y-0.5'
+                    : 'border-slate-200 hover:border-[#FF8617]/50 bg-white text-slate-600 hover:text-slate-900 hover:shadow-sm'
                 }`}
               >
-                <div
-                  className={`p-2 rounded-lg mb-1.5 transition-colors ${
-                    isSelected ? 'bg-[#FF8617] text-white' : 'bg-slate-100 text-slate-600'
-                  }`}
-                >
-                  {getIcon(segment.icon)}
+                {/* Thumbnail image */}
+                <div className="w-full h-20 sm:h-24 relative overflow-hidden bg-slate-100">
+                  <img
+                    src={segment.image}
+                    alt={segment.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <div
+                    className={`absolute inset-0 transition-opacity ${
+                      isSelected ? 'bg-[#06234C]/20' : 'bg-black/25 group-hover:bg-black/10'
+                    }`}
+                  />
+                  <div
+                    className={`absolute top-1.5 right-1.5 p-1 rounded-md text-white shadow-xs ${
+                      isSelected ? 'bg-[#FF8617]' : 'bg-[#06234C]/80'
+                    }`}
+                  >
+                    {getIcon(segment.icon)}
+                  </div>
                 </div>
-                <span className="text-xs font-semibold leading-tight line-clamp-2">
-                  {segment.name}
-                </span>
+
+                <div className="p-2 sm:p-2.5 w-full flex items-center justify-center min-h-[44px]">
+                  <span
+                    className={`text-[11px] sm:text-xs font-bold leading-tight line-clamp-2 ${
+                      isSelected ? 'text-[#FF8617]' : 'text-slate-700'
+                    }`}
+                  >
+                    {segment.name}
+                  </span>
+                </div>
               </button>
             );
           })}
