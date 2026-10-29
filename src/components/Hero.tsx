@@ -1,16 +1,17 @@
 import React from 'react';
-import { Smartphone, CheckCircle2, Zap, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Smartphone, CheckCircle2, Zap, ArrowRight, ShieldCheck, Sparkles, TrendingUp } from 'lucide-react';
+import { motion } from 'motion/react';
 import { VAREJOU_CONFIG } from '../config/varejouConfig';
 
 export const Hero: React.FC = () => {
   return (
-    <section id="inicio" className="relative pt-24 pb-16 md:pt-32 md:pb-20 overflow-hidden bg-gradient-to-b from-[#F5F8FC] via-white to-[#F5F8FC]">
+    <section id="inicio" className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden bg-gradient-to-b from-[#F5F8FC] via-white to-[#F5F8FC]">
       {/* Decorative background geometry */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-100/50 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
-      <div className="absolute bottom-10 left-0 w-80 h-80 bg-blue-100/50 rounded-full blur-3xl pointer-events-none -ml-20" />
+      <div className="absolute top-0 right-0 w-[550px] h-[550px] bg-orange-100/50 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
+      <div className="absolute bottom-10 left-0 w-88 h-88 bg-blue-100/50 rounded-full blur-3xl pointer-events-none -ml-20" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           
           {/* Left Column: Headlines & CTA */}
           <div className="lg:col-span-6 space-y-6 text-center lg:text-left">
@@ -106,25 +107,102 @@ export const Hero: React.FC = () => {
 
           </div>
 
-          {/* Right Column: Master Varejou 3D Composition with Shopping Cart & Characters */}
-          <div className="lg:col-span-6 relative flex items-center justify-center">
+          {/* Right Column: Master Varejou 3D Composition with Floating Animation & Dynamic Glow */}
+          <div className="lg:col-span-6 relative flex items-center justify-center select-none">
             <div className="relative w-full max-w-xl mx-auto flex flex-col items-center">
               
-              {/* Radial glow backdrop */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#FF8617]/20 via-[#FFD21A]/25 to-blue-400/10 rounded-full blur-2xl transform scale-90 pointer-events-none" />
+              {/* Animated pulsating ambient glow backdrop */}
+              <motion.div
+                animate={{
+                  scale: [0.92, 1.08, 0.92],
+                  opacity: [0.35, 0.65, 0.35],
+                }}
+                transition={{
+                  duration: 4.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute inset-0 bg-gradient-to-tr from-[#FF8617]/35 via-[#FFD21A]/30 to-[#1357A6]/25 rounded-full blur-3xl transform scale-95 pointer-events-none"
+              />
 
-              {/* Master 3D Varejou Image Asset */}
-              <div className="relative z-10 w-full transition-transform duration-500 hover:scale-[1.02]">
+              {/* Secondary soft rotating light ring effect */}
+              <motion.div
+                animate={{
+                  rotate: [0, 360],
+                }}
+                transition={{
+                  duration: 25,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="absolute inset-4 rounded-full border-2 border-dashed border-[#FF8617]/20 pointer-events-none"
+              />
+
+              {/* Floating Orbit Badge 1 (Top-Right) */}
+              <motion.div
+                animate={{
+                  y: [6, -8, 6],
+                  x: [-2, 4, -2],
+                }}
+                transition={{
+                  duration: 4.2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.2,
+                }}
+                className="absolute -top-2 right-2 sm:right-6 z-20 flex items-center gap-2 px-3.5 py-2 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-orange-200/80 text-xs font-bold text-[#06234C]"
+              >
+                <div className="p-1 rounded-full bg-emerald-50 text-emerald-600">
+                  <TrendingUp className="w-3.5 h-3.5" />
+                </div>
+                <span>Vendas em Tempo Real</span>
+              </motion.div>
+
+              {/* Floating Orbit Badge 2 (Bottom-Left) */}
+              <motion.div
+                animate={{
+                  y: [-6, 8, -6],
+                  x: [3, -3, 3],
+                }}
+                transition={{
+                  duration: 4.8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.8,
+                }}
+                className="absolute -bottom-3 left-2 sm:left-4 z-20 flex items-center gap-2 px-3.5 py-2 bg-[#06234C]/95 backdrop-blur-md rounded-2xl shadow-xl border border-slate-700 text-xs font-bold text-white"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-[#FFD21A]" />
+                <span>Vendeu, Controlou, Lucrou!</span>
+              </motion.div>
+
+              {/* Master 3D Varejou Image Asset with Smooth Levitating Float Animation */}
+              <motion.div
+                animate={{
+                  y: [-10, 10, -10],
+                  rotate: [-0.6, 0.6, -0.6],
+                }}
+                transition={{
+                  duration: 5.2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                whileHover={{
+                  scale: 1.03,
+                  transition: { duration: 0.3 },
+                }}
+                className="relative z-10 w-full cursor-pointer"
+              >
                 <img
                   src="/assets/aistudio/top_3c38211a.png"
                   alt="Varejou — Vendeu, controlou, lucrou! Sistema Inteligente para Lojas e Varejo"
-                  className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(6,35,76,0.18)]"
+                  className="w-full h-auto object-contain drop-shadow-[0_25px_40px_rgba(6,35,76,0.22)] filter"
                   loading="eager"
                 />
-              </div>
+              </motion.div>
 
-              {/* Subtle quality trust badge below master visual */}
-              <div className="mt-2 text-center text-xs text-slate-500 font-medium">
+              {/* Quality caption below master visual */}
+              <div className="mt-3 text-center text-xs text-slate-500 font-medium">
                 Vendeu, controlou, lucrou! O sistema de gestão preferido dos lojistas
               </div>
 

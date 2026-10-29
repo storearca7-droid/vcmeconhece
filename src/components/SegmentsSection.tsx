@@ -77,12 +77,21 @@ export const SegmentsSection: React.FC<SegmentsSectionProps> = ({ onOpenCheckout
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             
             {/* Segment Photo */}
-            <div className="lg:col-span-5 relative h-64 lg:h-80 overflow-hidden">
+            <div className="lg:col-span-5 relative h-64 lg:h-80 overflow-hidden bg-gradient-to-br from-[#06234C] to-[#1357A6] flex items-center justify-center">
               <img
                 src={activeSegment.image}
                 alt={`Ambiente comercial para ${activeSegment.name}`}
                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                 referrerPolicy="no-referrer"
+                loading="lazy"
+                onError={(e) => {
+                  // Fallback to top_3c38211a master visual if path fails
+                  const target = e.currentTarget;
+                  if (!target.src.includes('top_3c38211a.png')) {
+                    target.src = '/assets/aistudio/top_3c38211a.png';
+                    target.className = 'w-4/5 h-4/5 object-contain p-4';
+                  }
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#06234C]/60 via-transparent to-transparent lg:hidden" />
               <div className="absolute bottom-3 left-4 text-white lg:hidden">

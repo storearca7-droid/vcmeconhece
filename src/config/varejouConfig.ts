@@ -221,7 +221,7 @@ export const VAREJOU_CONFIG = {
       name: 'Lojas de Roupas',
       description: 'Controle de grade de tamanhos (P, M, G, GG), cores, coleções e rapidez na troca de peças.',
       exampleItems: ['Vestidos', 'Camisas', 'Calças Jeans', 'Conjuntos'],
-      image: '/src/assets/images/retail_fashion_clothing_1793296418611.jpg',
+      image: '/assets/images/retail_fashion.jpg',
       icon: 'Shirt',
     },
     {
@@ -229,7 +229,7 @@ export const VAREJOU_CONFIG = {
       name: 'Lojas de Calçados e Tênis',
       description: 'Gestão apurada de numerações, marcas, modelos e controle de estoque de pares individuais.',
       exampleItems: ['Tênis Esportivos', 'Sapatos', 'Sandálias', 'Chinelos'],
-      image: '/src/assets/images/retail_fashion_clothing_1793296418611.jpg',
+      image: '/assets/images/retail_fashion.jpg',
       icon: 'Footprints',
     },
     {
@@ -237,7 +237,7 @@ export const VAREJOU_CONFIG = {
       name: 'Cosméticos e Maquiagem',
       description: 'Datas de validade, linhas de produtos, tons de maquiagem e histórico de compras da cliente.',
       exampleItems: ['Batom', 'Perfumes', 'Skincare', 'Linha Capilar'],
-      image: '/src/assets/images/retail_cosmetics_beauty_1793296418686.jpg',
+      image: '/assets/images/retail_cosmetics.jpg',
       icon: 'Sparkles',
     },
     {
@@ -245,7 +245,7 @@ export const VAREJOU_CONFIG = {
       name: 'Celulares e Eletrônicos',
       description: 'Controle por IMEI, número de série, cabos, películas, capinhas e margens de acessórios.',
       exampleItems: ['Smartphones', 'Fones Bluetooth', 'Carregadores', 'Capas'],
-      image: '/src/assets/images/retail_electronics_phones_1793296419027.jpg',
+      image: '/assets/images/retail_electronics.jpg',
       icon: 'Smartphone',
     },
     {
@@ -253,7 +253,7 @@ export const VAREJOU_CONFIG = {
       name: 'Acessórios e Óculos',
       description: 'Organização de centenas de itens de pequeno porte, semijoias, armações e relógios.',
       exampleItems: ['Óculos de Sol', 'Semijoias', 'Bolsas', 'Cintos'],
-      image: '/src/assets/images/hero_retailer_workspace_1793296417554.jpg',
+      image: '/assets/images/retail_store.jpg',
       icon: 'Glasses',
     },
     {
@@ -261,7 +261,7 @@ export const VAREJOU_CONFIG = {
       name: 'Lojas de Variedades',
       description: 'Alto volume de vendas diárias, agilidade máxima no leitor de código de barras e controle de troco.',
       exampleItems: ['Artigos para Casa', 'Brinquedos', 'Papelaria', 'Presentes'],
-      image: '/src/assets/images/hero_retailer_workspace_1793296417554.jpg',
+      image: '/assets/images/retail_store.jpg',
       icon: 'Store',
     },
     {
@@ -269,7 +269,7 @@ export const VAREJOU_CONFIG = {
       name: 'Lojas de Lingerie',
       description: 'Tamanhos específicos de bojo, taças, tecidos delicados e atendimento privativo pelo WhatsApp.',
       exampleItems: ['Sutiãs', 'Calcinhas', 'Pijamas', 'Moda Praia'],
-      image: '/src/assets/images/retail_fashion_clothing_1793296418611.jpg',
+      image: '/assets/images/retail_fashion.jpg',
       icon: 'HeartHandshake',
     },
     {
@@ -277,7 +277,7 @@ export const VAREJOU_CONFIG = {
       name: 'Pequenos e Médios Comércios',
       description: 'Se você vende no balcão, no crediário ou sob encomenda, o Varejou se adapta ao seu ritmo.',
       exampleItems: ['Comércio de Bairro', 'Bazar', 'Distribuidora Local', 'Quiosque'],
-      image: '/src/assets/images/hero_retailer_workspace_1793296417554.jpg',
+      image: '/assets/images/retail_store.jpg',
       icon: 'Building2',
     },
   ],
